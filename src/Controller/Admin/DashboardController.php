@@ -45,7 +45,7 @@ class DashboardController extends AbstractDashboardController
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('intro', 'fas fa-list', Node::class)
-            // ->setController(PasswordCrudController::class)
+            ->setController(IntroCrudController::class)
             // ->setAction('edit')
             // ->setEntityId($this->getUser()->getId());
         ;
