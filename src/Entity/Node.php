@@ -40,6 +40,16 @@ class Node
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private array $tags = [];
+    
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
