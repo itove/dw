@@ -26,9 +26,6 @@ class Node
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $body = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $type = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $icon = null;
 
@@ -100,18 +97,6 @@ class Node
     public function setBody(?string $body): self
     {
         $this->body = $body;
-
-        return $this;
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function setType(int $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
