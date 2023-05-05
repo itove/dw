@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Node;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class IntroCrudController extends AbstractCrudController
+class AboutCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
