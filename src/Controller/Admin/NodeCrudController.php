@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use App\Admin\Field\VichImageField;
 
 class NodeCrudController extends AbstractCrudController
@@ -23,6 +24,7 @@ class NodeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title');
+        yield TextField::new('label');
         yield ImageField::new('img')
             ->onlyOnIndex()
             ->setBasePath('img/')
@@ -30,6 +32,18 @@ class NodeCrudController extends AbstractCrudController
         ;
         yield VichImageField::new('imageFile', 'Img')
             ->hideOnIndex()
-            ;
+        ;
+        yield TextField::new('icon');
+        yield AssociationField::new('region');
+        yield AssociationField::new('tag');
+        
+        yield TextareaField::new('synopsis')
+            ->setMaxLength(15)
+        ;
+        yield TextareaField::new('body')
+            ->onlyOnForms()
+        ;
+        yield DateTimeField::new('createdAt')
+            ->onlyOnIndex();
     }
 }
