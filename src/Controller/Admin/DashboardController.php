@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Node;
+use App\Entity\Region;
+use App\Entity\Tag;
 use Doctrine\Persistence\ManagerRegistry;
 
 class DashboardController extends AbstractDashboardController
@@ -94,7 +96,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('典型案例');
         yield MenuItem::section('团队介绍');
         yield MenuItem::section('企业动态');
-        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
         yield MenuItem::section('联系我们');
+        yield MenuItem::section('Super Admin');
+        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
+        yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
+        yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
     }
 }
