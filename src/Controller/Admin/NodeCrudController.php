@@ -22,21 +22,29 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Entity\Region;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 class NodeCrudController extends AbstractCrudController
 {
     private $doctrine;
+    private $region_label;
     private $region;
+    private $adminUrlGenerator;
 
-    public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack)
+    public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
         $this->doctrine = $doctrine;
         $request = $requestStack->getCurrentRequest();
         $region_label = $request->query->get('region');
+        $this->region_label = $region_label;
         if (!is_null($region_label)) {
             $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
         }
-        dump($region_label);
+        dump($this->region);
+        $this->adminUrlGenerator = $adminUrlGenerator;
     }
     
     public static function getEntityFqcn(): string
@@ -63,6 +71,38 @@ class NodeCrudController extends AbstractCrudController
         return $node;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        $new1 = Action::new('new1', 'New')
+            ->createAsGlobalAction()
+            ->linkToUrl(function (){
+                return $this->adminUrlGenerator
+                    ->setController(NodeCrudController::class)
+                    ->setDashboard(DashboardController::class)
+                    ->setAction('new')
+                    // ->set('menuIndex', 1)
+                    ->set('region', $this->region_label)
+                    ->generateUrl();
+            })
+            ;
+        
+        return $actions
+            ->remove('index', 'new')
+            ->add('index', $new1)
+        ;
+        /*
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+                return $action->setQueryParameter('fa fa-file-alt');
+            })
+
+            // in PHP 7.4 and newer you can use arrow functions
+            // ->update(Crud::PAGE_INDEX, Action::NEW,
+            //     fn (Action $action) => $action->setIcon('fa fa-file-alt'))
+            ;
+         */
+    }
+
     public function configureFields(string $pageName): iterable
     {
         if (!is_null($this->region)) {
@@ -83,8 +123,10 @@ class NodeCrudController extends AbstractCrudController
             yield VichImageField::new('imageFile', 'Img')
                 ->hideOnIndex()
             ;
-            yield TextField::new('icon');
-            yield AssociationField::new('region');
+            // if ($this->isGranted('ROLE_SUPERADMIN')) {
+                yield TextField::new('icon');
+                yield AssociationField::new('region');
+            // }
             yield AssociationField::new('tag');
 
             yield TextareaField::new('synopsis')
