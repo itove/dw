@@ -81,7 +81,6 @@ class NodeCrudController extends AbstractCrudController
                     // ->setController(NodeCrudController::class)
                     ->setAction('new')
                     // ->set('menuIndex', 1)
-                    ->set('region', $this->region_label)
                     ->generateUrl();
             })
             ;
@@ -93,7 +92,6 @@ class NodeCrudController extends AbstractCrudController
                     // ->setController(NodeCrudController::class)
                     ->setAction('edit')
                     // ->set('menuIndex', 1)
-                    ->set('region', $this->region_label)
                     ->set('entityId', $entity->getId())
                     ->generateUrl();
             })
