@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use App\Admin\Field\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
@@ -139,7 +140,12 @@ class NodeCrudController extends AbstractCrudController
             yield AssociationField::new('region');
         }
         if (!is_null($this->query->get('tag'))) {
-            yield AssociationField::new('tag');
+            yield ArrayField::new('tag')
+                ->hideOnForm()
+            ;
+            yield AssociationField::new('tag')
+                ->onlyOnForms()
+            ;
         }
 
         yield TextareaField::new('synopsis')
