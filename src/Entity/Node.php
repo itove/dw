@@ -8,7 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: NodeRepository::class)]
 class Node
 {
@@ -35,7 +37,7 @@ class Node
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $img = null;
     
-    // #[Vich\UploadableField(mapping: 'imgs', fileNameProperty: 'img')]
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'img')]
     #[Assert\Image(maxSize: '1024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
     private ?File $imageFile = null;
 
