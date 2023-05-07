@@ -78,7 +78,17 @@ class DashboardController extends AbstractDashboardController
                 ->setEntityId($i->getId());
             ;
         }
+        
         yield MenuItem::section('产品方案');
+        yield MenuItem::linkToCrud('产品及服务', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(10);
+        ;
+        yield MenuItem::linkToCrud('产品列表', 'fas fa-list', Node::class)
+            ->setController(ListCrudController::class)
+        ;
+        
         yield MenuItem::section('典型案例');
         yield MenuItem::section('团队介绍');
         yield MenuItem::section('企业动态');

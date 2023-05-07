@@ -23,6 +23,7 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield IdField::new('id');
         yield TextField::new('title');
         yield TextField::new('label');
         yield ImageField::new('img')
