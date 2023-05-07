@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NodeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,12 @@ class Node
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private array $tags = [];
+
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
+    private ?Region $region = null;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
+    private Collection $tag;
     
     public function __toString(): string
     {
@@ -46,6 +54,7 @@ class Node
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->tag = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +154,42 @@ class Node
     public function setTags(?array $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTag(): Collection
+    {
+        return $this->tag;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tag->contains($tag)) {
+            $this->tag->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tag->removeElement($tag);
 
         return $this;
     }
