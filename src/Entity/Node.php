@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NodeRepository::class)]
 class Node
@@ -33,6 +34,10 @@ class Node
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $img = null;
+    
+    // #[Vich\UploadableField(mapping: 'imgs', fileNameProperty: 'img')]
+    #[Assert\Image(maxSize: '1024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;
@@ -45,6 +50,9 @@ class Node
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
     private Collection $tag;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
     
     public function __toString(): string
     {
@@ -192,5 +200,33 @@ class Node
         $this->tag->removeElement($tag);
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+    
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }
