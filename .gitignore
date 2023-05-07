@@ -20,3 +20,4 @@ Groovin/
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 *.sql
+public/img/
