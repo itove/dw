@@ -13,42 +13,33 @@ use App\Entity\Node;
 use App\Entity\Region;
 use App\Entity\Tag;
 use Doctrine\Persistence\ManagerRegistry;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 class DashboardController extends AbstractDashboardController
 {
     private $doctrine;
+    private $nodes;
 
     public function __construct(ManagerRegistry $doctrine)
     {
       $this->doctrine = $doctrine;
+      $this->nodes = $doctrine->getRepository(Node::class);
     }
     
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        // return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(NodeCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
     {
+        // Make sure first one is company name
+        $title = $this->nodes->find(1);
         return Dashboard::new()
-            ->setTitle('湖北多维信息技术有限公司');
+            ->setTitle($title);
     }
     
     public function configureCrud(): Crud
@@ -61,15 +52,27 @@ class DashboardController extends AbstractDashboardController
         ;
     }
 
+    public function configureActions(): Actions
+    {
+        return Actions::new()
+            ->disable('delete')
+            ->add('detail', 'edit')
+            ->add('index', 'edit')
+            ->add('index', 'new')
+            ->add(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
+            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN)
+            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE)
+        ;
+    }
+
     public function configureMenuItems(): iterable
     {
-        $nodes = $this->doctrine->getRepository(Node::class);
         $regions = $this->doctrine->getRepository(Region::class);
         
         yield MenuItem::section('关于我们');
         
         $region_about = $regions->findOneBy(['label' => 'about']);
-        $abouts = $nodes->findBy(['region' => $region_about]);
+        $abouts = $this->nodes->findBy(['region' => $region_about]);
         foreach ($abouts as $i) {
             yield MenuItem::linkToCrud($i, 'fas fa-list', Node::class)
                 ->setQueryParameter('region', 'about')
@@ -150,6 +153,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('企业动态');
         yield MenuItem::linkToCrud('企业动态', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'news')
         ;
         
         yield MenuItem::section('Super Admin');
