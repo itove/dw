@@ -10,9 +10,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Node;
+use Doctrine\Persistence\ManagerRegistry;
 
 class DashboardController extends AbstractDashboardController
 {
+    private $doctrine;
+
+    public function __construct(ManagerRegistry $doctrine)
+    {
+      $this->doctrine = $doctrine;
+    }
+    
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -40,17 +48,6 @@ class DashboardController extends AbstractDashboardController
         return Dashboard::new()
             ->setTitle('湖北多维信息技术有限公司');
     }
-
-    public function configureMenuItems(): iterable
-    {
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('About', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            // ->setAction('edit')
-            // ->setEntityId($this->getUser()->getId());
-        ;
-        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
-    }
     
     public function configureCrud(): Crud
     {
@@ -60,5 +57,44 @@ class DashboardController extends AbstractDashboardController
             ->setDateTimeFormat('yyyy/MM/dd HH:mm')
             ->setDefaultSort(['id' => 'DESC'])
         ;
+    }
+
+    public function configureMenuItems(): iterable
+    {
+        $nodes = $this->doctrine->getRepository(Node::class);
+        
+        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::section('关于我们');
+        yield MenuItem::linkToCrud('About', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId($nodes->findOneBy(['label' => 'company_name'])->getId());
+        ;
+        yield MenuItem::linkToCrud('About1', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId($nodes->findOneBy(['label' => 'about_1'])->getId());
+        ;
+        yield MenuItem::linkToCrud('About2', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId($nodes->findOneBy(['label' => 'about_2'])->getId());
+        ;
+        yield MenuItem::linkToCrud('About3', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId($nodes->findOneBy(['label' => 'about_3'])->getId());
+        ;
+        yield MenuItem::linkToCrud('About4', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId($nodes->findOneBy(['label' => 'about_4'])->getId());
+        ;
+        yield MenuItem::section('产品方案');
+        yield MenuItem::section('典型案例');
+        yield MenuItem::section('团队介绍');
+        yield MenuItem::section('企业动态');
+        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
+        yield MenuItem::section('联系我们');
     }
 }
