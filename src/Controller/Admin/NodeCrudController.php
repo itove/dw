@@ -134,9 +134,26 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')
-            ->onlyOnIndex()
-        ;
+        if ($this->isGranted('ROLE_SUPERADMIN')) {
+            yield IdField::new('id')
+                ->onlyOnIndex()
+            ;
+            yield TextField::new('icon');
+            yield AssociationField::new('region');
+            yield ArrayField::new('tag')
+                ->hideOnForm()
+            ;
+            yield AssociationField::new('tag')
+                ->onlyOnForms()
+            ;
+            yield TextareaField::new('body')
+                ->onlyOnForms()
+            ;
+            yield DateTimeField::new('createdAt')
+                ->onlyOnIndex()
+            ;
+        }
+        
         yield TextField::new('title');
         if (!is_null($this->query->get('img'))) {
             yield ImageField::new('img')
@@ -148,10 +165,6 @@ class NodeCrudController extends AbstractCrudController
                 ->hideOnIndex()
             ;
         }
-        if ($this->isGranted('ROLE_SUPERADMIN')) {
-            yield TextField::new('icon');
-            yield AssociationField::new('region');
-        }
         if (!is_null($this->query->get('tag'))) {
             yield ArrayField::new('tag')
                 ->hideOnForm()
@@ -160,7 +173,6 @@ class NodeCrudController extends AbstractCrudController
                 ->onlyOnForms()
             ;
         }
-
         yield TextareaField::new('synopsis')
             // ->setMaxLength(15)
         ;
