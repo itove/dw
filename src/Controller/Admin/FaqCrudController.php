@@ -19,14 +19,17 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class FaqCrudController extends AbstractCrudController
 {
     private $doctrine;
-    private RequestStack $requestStack;
     private $region;
 
     public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
         $this->doctrine = $doctrine;
-        $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => 'faq_list']);
+        $request = $requestStack->getCurrentRequest();
+        $region_label = $request->query->get('region');
+        if (!is_null($region_label)) {
+            $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
+        }
+        dump($region_label);
     }
     
     public static function getEntityFqcn(): string
