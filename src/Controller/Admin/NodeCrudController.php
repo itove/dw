@@ -32,21 +32,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 
 class NodeCrudController extends AbstractCrudController
 {
-    private $doctrine;
     private $region;
     private $query;
     private $adminUrlGenerator;
 
     public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
-        $this->doctrine = $doctrine;
-        $request = $requestStack->getCurrentRequest();
-        $this->query = $request->query;
+        $this->query= $requestStack->getCurrentRequest()->query;
         $region_label = $this->query->get('region');
         if (!is_null($region_label)) {
             $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
         }
-        dump($this->region);
         $this->adminUrlGenerator = $adminUrlGenerator;
     }
     
