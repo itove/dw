@@ -109,6 +109,14 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('团队介绍');
+        yield MenuItem::linkToCrud('团队成员', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(31);
+        ;
+        yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Node::class)
+            ->setController(TeamCrudController::class)
+        ;
         yield MenuItem::section('企业动态');
         yield MenuItem::section('联系我们');
         yield MenuItem::section('Super Admin');
