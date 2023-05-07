@@ -26,11 +26,15 @@ class IndexController extends AbstractController
         $about = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'about'])]);
         $product = $nodeRepo->findOneBy(['region' => $regionRepo->findOneBy(['label' => 'product'])]);
         $product_list = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'product_list'])]);
+        $why = $nodeRepo->findOneBy(['region' => $regionRepo->findOneBy(['label' => 'why'])]);
+        $why_list = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'why_list'])]);
         
         return $this->render('index/index.html.twig', [
             'about' => $about,
             'product' => $product,
             'product_list' => $product_list,
+            'why' => $why,
+            'why_list' => $why_list,
         ]);
     }
 }
