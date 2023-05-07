@@ -66,10 +66,9 @@ class DashboardController extends AbstractDashboardController
         $nodes = $this->doctrine->getRepository(Node::class);
         $regions = $this->doctrine->getRepository(Region::class);
         
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section('关于我们');
         
-        $region_about = $regions->findOneBy(['label' => 'aboutus']);
+        $region_about = $regions->findOneBy(['label' => 'about']);
         $abouts = $nodes->findBy(['region' => $region_about]);
         foreach ($abouts as $i) {
             yield MenuItem::linkToCrud($i, 'fas fa-list', Node::class)
@@ -89,13 +88,34 @@ class DashboardController extends AbstractDashboardController
             ->setController(ListCrudController::class)
         ;
         
+        yield MenuItem::section('我们的优势');
+        yield MenuItem::linkToCrud('我们的优势', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(17);
+        ;
+        yield MenuItem::linkToCrud('优势列表', 'fas fa-list', Node::class)
+            ->setController(WhyUsCrudController::class)
+        ;
+        
         yield MenuItem::section('典型案例');
+        yield MenuItem::linkToCrud('典型案例', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(21);
+        ;
+        yield MenuItem::linkToCrud('案例列表', 'fas fa-list', Node::class)
+            ->setController(PortfolioCrudController::class)
+        ;
+        
         yield MenuItem::section('团队介绍');
         yield MenuItem::section('企业动态');
         yield MenuItem::section('联系我们');
         yield MenuItem::section('Super Admin');
-        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
         yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
         yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
+        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class)
+            ->setController(NodeCrudController::class)
+        ;
     }
 }

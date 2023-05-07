@@ -13,7 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use Doctrine\ORM\QueryBuilder;
 
-class AboutCrudController extends AbstractCrudController
+class WhyUsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -31,7 +31,7 @@ class AboutCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $response->andWhere("entity.region = 1");
+        $response->andWhere("entity.region = 7");
         return $response;
     }
 }
