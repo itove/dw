@@ -21,6 +21,9 @@ class Tag
     #[ORM\ManyToMany(targetEntity: Node::class, mappedBy: 'tag')]
     private Collection $nodes;
 
+    #[ORM\Column(length: 20)]
+    private ?string $label = null;
+
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
@@ -66,6 +69,18 @@ class Tag
         if ($this->nodes->removeElement($node)) {
             $node->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }
