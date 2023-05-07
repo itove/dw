@@ -149,7 +149,7 @@ class NodeCrudController extends AbstractCrudController
         }
 
         yield TextareaField::new('synopsis')
-            ->setMaxLength(15)
+            // ->setMaxLength(15)
         ;
         if (!is_null($this->query->get('body'))) {
             yield TextareaField::new('body')
