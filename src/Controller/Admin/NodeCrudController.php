@@ -75,10 +75,10 @@ class NodeCrudController extends AbstractCrudController
     {
         $new1 = Action::new('new1', 'New')
             ->createAsGlobalAction()
+            ->addCssClass('btn btn-primary')
             ->linkToUrl(function (){
                 return $this->adminUrlGenerator
-                    ->setController(NodeCrudController::class)
-                    ->setDashboard(DashboardController::class)
+                    // ->setController(NodeCrudController::class)
                     ->setAction('new')
                     // ->set('menuIndex', 1)
                     ->set('region', $this->region_label)
@@ -86,9 +86,26 @@ class NodeCrudController extends AbstractCrudController
             })
             ;
         
+        $edit1 = Action::new('edit1', 'Edit')
+            // ->addCssClass('btn btn-primary')
+            ->linkToUrl(function (Node $entity){
+                return $this->adminUrlGenerator
+                    // ->setController(NodeCrudController::class)
+                    ->setAction('edit')
+                    // ->set('menuIndex', 1)
+                    ->set('region', $this->region_label)
+                    ->set('entityId', $entity->getId())
+                    ->generateUrl();
+            })
+            ;
+        
         return $actions
             ->remove('index', 'new')
+            ->remove('index', 'edit')
+            ->remove('detail', 'edit')
             ->add('index', $new1)
+            ->add('index', $edit1)
+            ->add('detail', $edit1)
         ;
         /*
         return $actions
