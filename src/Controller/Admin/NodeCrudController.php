@@ -27,6 +27,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 
 class NodeCrudController extends AbstractCrudController
 {
@@ -117,6 +119,21 @@ class NodeCrudController extends AbstractCrudController
             //     fn (Action $action) => $action->setIcon('fa fa-file-alt'))
             ;
          */
+    }
+    
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets
+            ->addJsFile(
+                Asset::new('/js/ckeditor.js')
+                    ->onlyOnForms()
+            )
+            ->addJsFile(
+                Asset::new('/js/initCKEditor.js')
+                    ->defer()
+                    ->onlyOnForms()
+            )
+        ;
     }
 
     public function configureFields(string $pageName): iterable
