@@ -72,6 +72,7 @@ class DashboardController extends AbstractDashboardController
         $abouts = $nodes->findBy(['region' => $region_about]);
         foreach ($abouts as $i) {
             yield MenuItem::linkToCrud($i, 'fas fa-list', Node::class)
+                ->setQueryParameter('region', 'about')
                 ->setAction('detail')
                 ->setEntityId($i->getId());
             ;
@@ -79,46 +80,57 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('产品方案');
         yield MenuItem::linkToCrud('产品及服务', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'product')
             ->setAction('detail')
             ->setEntityId(10);
         ;
         yield MenuItem::linkToCrud('产品列表', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'product_list')
         ;
         
         yield MenuItem::section('我们的优势');
         yield MenuItem::linkToCrud('我们的优势', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'why')
             ->setAction('detail')
             ->setEntityId(17);
         ;
         yield MenuItem::linkToCrud('优势列表', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'why_list')
         ;
         
         yield MenuItem::section('典型案例');
         yield MenuItem::linkToCrud('典型案例', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'portfolio')
             ->setAction('detail')
             ->setEntityId(21);
         ;
         yield MenuItem::linkToCrud('案例列表', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'portfolio_list')
         ;
         
         yield MenuItem::section('团队介绍');
         yield MenuItem::linkToCrud('团队成员', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'team')
             ->setAction('detail')
             ->setEntityId(31);
         ;
         yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'team_list')
         ;
         
         yield MenuItem::section('产品价格');
         yield MenuItem::linkToCrud('产品价格', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'price')
             ->setAction('detail')
             ->setEntityId(36);
         ;
         yield MenuItem::linkToCrud('价格列表', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'price_list')
         ;
         
         yield MenuItem::section('常见问题');
         yield MenuItem::linkToCrud('常见问题', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'faq')
             ->setAction('detail')
             ->setEntityId(37);
         ;
@@ -128,10 +140,12 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('联系我们');
         yield MenuItem::linkToCrud('联系我们', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'contact')
             ->setAction('detail')
             ->setEntityId(38);
         ;
         yield MenuItem::linkToCrud('联系信息', 'fas fa-list', Node::class)
+            ->setQueryParameter('region', 'contact_list')
         ;
         
         yield MenuItem::section('企业动态');
