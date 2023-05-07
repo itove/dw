@@ -89,7 +89,6 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('产品列表', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'product_list')
-            ->setQueryParameter('img', '1')
         ;
         
         yield MenuItem::section('我们的优势');
