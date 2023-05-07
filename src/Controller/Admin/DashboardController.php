@@ -89,6 +89,7 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('产品列表', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'product_list')
+            ->setQueryParameter('img', '1')
         ;
         
         yield MenuItem::section('我们的优势');
@@ -109,6 +110,7 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('案例列表', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'portfolio_list')
+            ->setQueryParameter('img', '1')
         ;
         
         yield MenuItem::section('团队介绍');
@@ -119,6 +121,7 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'team_list')
+            ->setQueryParameter('img', '1')
         ;
         
         yield MenuItem::section('产品价格');
@@ -154,6 +157,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('企业动态');
         yield MenuItem::linkToCrud('企业动态', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'news')
+            ->setQueryParameter('img', '1')
+            ->setQueryParameter('tag', '1')
+            ->setQueryParameter('body', '1')
         ;
         
         yield MenuItem::section('Super Admin');

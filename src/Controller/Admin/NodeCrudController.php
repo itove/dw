@@ -30,16 +30,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 class NodeCrudController extends AbstractCrudController
 {
     private $doctrine;
-    private $region_label;
     private $region;
+    private $query;
     private $adminUrlGenerator;
 
     public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
         $this->doctrine = $doctrine;
         $request = $requestStack->getCurrentRequest();
-        $region_label = $request->query->get('region');
-        $this->region_label = $region_label;
+        $this->query = $request->query;
+        $region_label = $this->query->get('region');
         if (!is_null($region_label)) {
             $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
         }
@@ -122,16 +122,11 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        if (!is_null($this->region)) {
-            yield TextField::new('title');
-            yield TextareaField::new('synopsis')
-                // ->setMaxLength(15)
-                ;
-        } else {
-            yield IdField::new('id')
-                ->onlyOnIndex()
-            ;
-            yield TextField::new('title');
+        yield IdField::new('id')
+            ->onlyOnIndex()
+        ;
+        yield TextField::new('title');
+        if (!is_null($this->query->get('img'))) {
             yield ImageField::new('img')
                 ->onlyOnIndex()
                 ->setBasePath('img/')
@@ -140,20 +135,25 @@ class NodeCrudController extends AbstractCrudController
             yield VichImageField::new('imageFile', 'Img')
                 ->hideOnIndex()
             ;
-            // if ($this->isGranted('ROLE_SUPERADMIN')) {
-                yield TextField::new('icon');
-                yield AssociationField::new('region');
-            // }
+        }
+        if ($this->isGranted('ROLE_SUPERADMIN')) {
+            yield TextField::new('icon');
+            yield AssociationField::new('region');
+        }
+        if (!is_null($this->query->get('tag'))) {
             yield AssociationField::new('tag');
+        }
 
-            yield TextareaField::new('synopsis')
-                ->setMaxLength(15)
-            ;
+        yield TextareaField::new('synopsis')
+            ->setMaxLength(15)
+        ;
+        if (!is_null($this->query->get('body'))) {
             yield TextareaField::new('body')
                 ->onlyOnForms()
             ;
             yield DateTimeField::new('createdAt')
-                ->onlyOnIndex();
+                ->onlyOnIndex()
+            ;
         }
     }
 }
