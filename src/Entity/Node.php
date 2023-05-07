@@ -22,7 +22,7 @@ class Node
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $label = null;
 
     #[ORM\Column]
