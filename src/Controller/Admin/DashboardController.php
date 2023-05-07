@@ -64,34 +64,20 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         $nodes = $this->doctrine->getRepository(Node::class);
+        $regions = $this->doctrine->getRepository(Region::class);
         
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section('关于我们');
-        yield MenuItem::linkToCrud('About', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            ->setAction('detail')
-            ->setEntityId($nodes->findOneBy(['label' => 'company_name'])->getId());
-        ;
-        yield MenuItem::linkToCrud('About1', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            ->setAction('detail')
-            ->setEntityId($nodes->findOneBy(['label' => 'about_1'])->getId());
-        ;
-        yield MenuItem::linkToCrud('About2', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            ->setAction('detail')
-            ->setEntityId($nodes->findOneBy(['label' => 'about_2'])->getId());
-        ;
-        yield MenuItem::linkToCrud('About3', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            ->setAction('detail')
-            ->setEntityId($nodes->findOneBy(['label' => 'about_3'])->getId());
-        ;
-        yield MenuItem::linkToCrud('About4', 'fas fa-list', Node::class)
-            ->setController(AboutCrudController::class)
-            ->setAction('detail')
-            ->setEntityId($nodes->findOneBy(['label' => 'about_4'])->getId());
-        ;
+        
+        $region_about = $regions->findOneBy(['label' => 'aboutus']);
+        $abouts = $nodes->findBy(['region' => $region_about]);
+        foreach ($abouts as $i) {
+            yield MenuItem::linkToCrud($i, 'fas fa-list', Node::class)
+                ->setController(AboutCrudController::class)
+                ->setAction('detail')
+                ->setEntityId($i->getId());
+            ;
+        }
         yield MenuItem::section('产品方案');
         yield MenuItem::section('典型案例');
         yield MenuItem::section('团队介绍');
