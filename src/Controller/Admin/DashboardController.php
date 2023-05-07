@@ -117,8 +117,42 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Node::class)
             ->setController(TeamCrudController::class)
         ;
-        yield MenuItem::section('企业动态');
+        
+        yield MenuItem::section('产品价格');
+        yield MenuItem::linkToCrud('产品价格', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(36);
+        ;
+        yield MenuItem::linkToCrud('价格列表', 'fas fa-list', Node::class)
+            ->setController(PriceCrudController::class)
+        ;
+        
+        yield MenuItem::section('常见问题');
+        yield MenuItem::linkToCrud('常见问题', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(37);
+        ;
+        yield MenuItem::linkToCrud('问题列表', 'fas fa-list', Node::class)
+            ->setController(FaqCrudController::class)
+        ;
+        
         yield MenuItem::section('联系我们');
+        yield MenuItem::linkToCrud('联系我们', 'fas fa-list', Node::class)
+            ->setController(AboutCrudController::class)
+            ->setAction('detail')
+            ->setEntityId(38);
+        ;
+        yield MenuItem::linkToCrud('联系信息', 'fas fa-list', Node::class)
+            ->setController(ContactCrudController::class)
+        ;
+        
+        yield MenuItem::section('企业动态');
+        yield MenuItem::linkToCrud('企业动态', 'fas fa-list', Node::class)
+            ->setController(NewsCrudController::class)
+        ;
+        
         yield MenuItem::section('Super Admin');
         yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
         yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
