@@ -75,7 +75,6 @@ class NodeCrudController extends AbstractCrudController
                 ->onlyOnIndex()
             ;
             yield TextField::new('title');
-            yield TextField::new('label');
             yield ImageField::new('img')
                 ->onlyOnIndex()
                 ->setBasePath('img/')
