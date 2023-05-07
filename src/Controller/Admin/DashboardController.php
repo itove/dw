@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Node;
 use App\Entity\Region;
 use App\Entity\Tag;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -160,6 +161,8 @@ class DashboardController extends AbstractDashboardController
             ->setQueryParameter('tag', '1')
             ->setQueryParameter('body', '1')
         ;
+        yield MenuItem::section('系统管理');
+        yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
         
         yield MenuItem::section('Super Admin');
         yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
