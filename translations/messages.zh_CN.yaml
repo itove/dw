@@ -19,6 +19,11 @@ Roles: 角色
 Type: 类型
 Title: 标题
 Body: 正文
-Tags: 标签
+Tag: 标签
 Img: 标题图片
-Settings: 系统管理
+Conf: 系统设置
+Created At: 创建于
+Company Name: 公司名称
+Keywords: 网站关键词
+Description: 网站描述
+Email: 邮箱
