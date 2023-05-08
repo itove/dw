@@ -160,7 +160,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('企业动态');
         yield MenuItem::linkToCrud('企业动态', 'fas fa-list', Node::class)
-            ->setQueryParameter('region', 'news')
+            ->setQueryParameter('region', 'news_list')
             ->setQueryParameter('img', '1')
             ->setQueryParameter('tag', 'nodash')
             ->setQueryParameter('body', 'Body')

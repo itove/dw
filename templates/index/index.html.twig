@@ -9,7 +9,7 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">{{ site_name }}</a></h1>
+      <h1 class="logo"><a href="#">{{ site_name }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -44,44 +44,19 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
+        {% for i in news_list %}
+          <div class="carousel-item {{ loop.first ? 'active'}}" style="background-image: url(/img/{{ i.img }});">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">科技创造美好未来</h2>
-                <p class="animate__animated animate__fadeInUp">科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p>
+                <h2 class="animate__animated animate__fadeInDown">{{ i }}</h2>
+                <p class="animate__animated animate__fadeInUp">{{ i.synopsis }}</p>
                 <div>
                   <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">用户为本，科技向善</h2>
-                <p class="animate__animated animate__fadeInUp">一切以用户价值为依归，将社会责任融入产品及服务之中；推动科技创新与文化传承，助力各行各业升级，促进社会的可持续发展。</p>
-                <div>
-                  <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">开放、合作、共赢</h2>
-                <p class="animate__animated animate__fadeInUp">与不同行业的合作，促进跨领域、跨技术和跨手段的交流和协作，携手构建适应产业健康和谐发展的生态环境，推动数字经济发展。</p>
-                <div>
-                  <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
 
         </div>
 
