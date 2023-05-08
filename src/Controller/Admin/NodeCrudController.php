@@ -182,6 +182,10 @@ class NodeCrudController extends AbstractCrudController
             ;
             yield AssociationField::new('tag')
                 ->onlyOnForms()
+                ->setQueryBuilder(
+                    fn (QueryBuilder $qb) => $qb
+                        ->andWhere("entity.label not like '%-%'")
+                )
             ;
         }
         $synopsis_label = '';
