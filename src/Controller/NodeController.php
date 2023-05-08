@@ -10,7 +10,6 @@ use App\Entity\Conf;
 use App\Entity\Node;
 use App\Entity\Region;
 
-#[Route('/node')]
 class NodeController extends AbstractController
 {
     private $doctrine;
@@ -20,8 +19,8 @@ class NodeController extends AbstractController
         $this->doctrine = $doctrine;
     }
     
-    #[Route('/{slug}', name: 'app_node_show')]
-    public function show($slug): Response
+    #[Route('/node/{slug}', name: 'app_node_show')]
+    public function showNode($slug): Response
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
         $nodeRepo = $this->doctrine->getRepository(Node::class);
@@ -57,5 +56,30 @@ class NodeController extends AbstractController
         }
         
         return $this->render('node/detail.html.twig', $arr);
+    }
+    
+    #[Route('/news/{tag}', name: 'app_news_list')]
+    public function showPrivacy($tag): Response
+    {
+    }
+    
+    #[Route('/product/{id}', name: 'app_product')]
+    public function showPrivacy($id): Response
+    {
+    }
+    
+    #[Route('/portfolio/{id}', name: 'app_portfolio')]
+    public function showPrivacy($id): Response
+    {
+    }
+    
+    #[Route('/privacy', name: 'app_privacy')]
+    public function showPrivacy($slug): Response
+    {
+    }
+    
+    #[Route('/policy', name: 'app_policy')]
+    public function showPolicy($slug): Response
+    {
     }
 }
