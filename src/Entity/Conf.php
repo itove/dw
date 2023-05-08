@@ -35,6 +35,12 @@ class Conf
     #[ORM\Column(length: 20)]
     private ?string $icp = '鄂ICP备XXXXXXXX号-X';
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $weibo = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $wx = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +126,30 @@ class Conf
     public function setIcp(?string $icp): self
     {
         $this->icp = $icp;
+
+        return $this;
+    }
+
+    public function getWeibo(): ?string
+    {
+        return $this->weibo;
+    }
+
+    public function setWeibo(?string $weibo): self
+    {
+        $this->weibo = $weibo;
+
+        return $this;
+    }
+
+    public function getWx(): ?string
+    {
+        return $this->wx;
+    }
+
+    public function setWx(?string $wx): self
+    {
+        $this->wx = $wx;
 
         return $this;
     }
