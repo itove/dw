@@ -39,10 +39,13 @@ class IndexController extends AbstractController
         
         foreach($regions as $r ) {
             $limit = $r->getCount();
-            if (str_ends_with($r->getLabel(), '_list')) {
-                $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r], ['id' => 'DESC'], $limit);
-            } else if ($r->getLabel() === 'about') {
-                $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r], [], $limit);
+            if ($limit > 0) {
+                $order = 'DESC';
+            } else {
+                $order = 'ASC';
+            }
+            if ($limit !== 0) {
+                $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r], ['id' => $order], abs($limit));
             } else {
                 $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
             }
