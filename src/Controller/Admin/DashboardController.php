@@ -121,7 +121,7 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId(31);
         ;
         yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Node::class)
-            ->setQueryParameter('region', 'team_list')
+            ->setQueryParameter('region', 'member_list')
             ->setQueryParameter('img', '1')
         ;
         
