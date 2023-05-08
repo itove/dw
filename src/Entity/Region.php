@@ -32,8 +32,7 @@ class Region
     #[ORM\Column]
     private ?bool $list = false;
 
-    #[ORM\Column(type: Types::SMALLINT, options: ["unsigned" => true])]
-    #[Assert\Positive]
+    #[ORM\Column(type: Types::SMALLINT)]
     private ?int $count = 0;
 
     public function __construct()
