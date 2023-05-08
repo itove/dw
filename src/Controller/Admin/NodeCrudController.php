@@ -134,7 +134,7 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->isGranted('ROLE_SUPER_ADMIN') && is_null($this->region)) {
             yield IdField::new('id')
                 ->onlyOnIndex()
             ;
