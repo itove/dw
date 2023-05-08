@@ -19,7 +19,7 @@ class ConfCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Company Name'),
+            TextField::new('name', 'Site Name'),
             ArrayField::new('keywords'),
             TextareaField::new('description'),
             TextField::new('address'),

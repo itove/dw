@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Node;
 use App\Entity\Region;
+use App\Entity\Conf;
 
 class IndexController extends AbstractController
 {
@@ -21,6 +22,7 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
+        $conf = $this->doctrine->getRepository(Conf::class)->find(1);
         $nodeRepo = $this->doctrine->getRepository(Node::class);
         $regionRepo = $this->doctrine->getRepository(Region::class);
         $about = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'about'])]);
@@ -30,6 +32,9 @@ class IndexController extends AbstractController
         $why_list = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'why_list'])]);
         
         return $this->render('index/index.html.twig', [
+            'description' => $conf->getDescription(),
+            'keywords' => $conf->getKeywords(),
+            'site_name' => $conf->getName(),
             'about' => $about,
             'product' => $product,
             'product_list' => $product_list,

@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}湖北多维信息技术有限公司{% endblock %}
+{% block desc %}{{ description }}{% endblock %}
+{% block keywords %}{{ keywords|join(', ') }}{% endblock %}
+{% block title %}{{ site_name }}{% endblock %}
 
 {% block body %}
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">湖北多维信息技术有限公司</a></h1>
+      <h1 class="logo"><a href="index.html">{{ site_name }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -215,7 +217,7 @@
         {% for i in why_list %}
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box">
-              <span>{{ loop.index }}</span>
+              <span>{{ "%02d"|format(loop.index) }}</span>
               <h4>{{ i }}</h4>
               <p>{{ i.synopsis }}</p>
             </div>
