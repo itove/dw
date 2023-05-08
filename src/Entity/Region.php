@@ -24,6 +24,12 @@ class Region
     #[ORM\Column(length: 20)]
     private ?string $label = null;
 
+    #[ORM\Column]
+    private ?bool $menu = true;
+
+    #[ORM\Column]
+    private ?bool $list = false;
+
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
@@ -89,6 +95,30 @@ class Region
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function isMenu(): ?bool
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(bool $menu): self
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    public function isList(): ?bool
+    {
+        return $this->list;
+    }
+
+    public function setList(bool $list): self
+    {
+        $this->list = $list;
 
         return $this;
     }
