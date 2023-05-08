@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 class Region
@@ -29,6 +31,10 @@ class Region
 
     #[ORM\Column]
     private ?bool $list = false;
+
+    #[ORM\Column(type: Types::SMALLINT, options: ["unsigned" => true])]
+    #[Assert\Positive]
+    private ?int $count = 0;
 
     public function __construct()
     {
@@ -119,6 +125,18 @@ class Region
     public function setList(bool $list): self
     {
         $this->list = $list;
+
+        return $this;
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+    public function setCount(int $count): self
+    {
+        $this->count = $count;
 
         return $this;
     }
