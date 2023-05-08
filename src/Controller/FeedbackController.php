@@ -46,6 +46,6 @@ class FeedbackController extends AbstractController
         $em->persist($f);
         $em->flush();
         
-        return $this->json(['code' => 0]);
+        return $this->json('OK');
     }
 }
