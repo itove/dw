@@ -14,6 +14,7 @@ use App\Entity\Region;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Conf;
+use App\Entity\Feedback;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -172,6 +173,7 @@ class DashboardController extends AbstractDashboardController
             ->setAction('detail')
             ->setEntityId(1)
         ;
+        yield MenuItem::linkToCrud('客户反馈', 'fas fa-list', Feedback::class);
         
         yield MenuItem::section('Super Admin');
         yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
