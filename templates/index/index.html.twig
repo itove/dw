@@ -443,11 +443,9 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>产品</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">产品1</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">产品2</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">产品3</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">产品4</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">产品5</a></li>
+            {% for i in product_list|slice(0,5) %}
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">{{ i }}</a></li>
+            {% endfor %}
             </ul>
           </div>
 
