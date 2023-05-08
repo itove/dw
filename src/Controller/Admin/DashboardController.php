@@ -133,7 +133,7 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('价格列表', 'fas fa-list', Node::class)
             ->setQueryParameter('region', 'price_list')
-            ->setQueryParameter('synopsis', 'Price')
+            ->setQueryParameter('synopsis', 'Price') // parameter as field label
             ->setQueryParameter('body', 'Feature')
         ;
         
