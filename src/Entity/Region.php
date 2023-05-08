@@ -29,9 +29,6 @@ class Region
     #[ORM\Column]
     private ?bool $menu = true;
 
-    #[ORM\Column]
-    private ?bool $list = false;
-
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $count = 0;
 
@@ -116,18 +113,6 @@ class Region
         return $this;
     }
 
-    public function isList(): ?bool
-    {
-        return $this->list;
-    }
-
-    public function setList(bool $list): self
-    {
-        $this->list = $list;
-
-        return $this;
-    }
-
     public function getCount(): ?int
     {
         return $this->count;
@@ -136,6 +121,25 @@ class Region
     public function setCount(int $count): self
     {
         $this->count = $count;
+
+        return $this;
+    }
+    
+    public function getOrder(): ?string
+    {
+        if ($this->count > 0) {
+            $order = 'DESC';
+        } else {
+            $order = 'ASC';
+        }
+        return $order;
+    }
+    
+    public function setOrder(string $order): self
+    {
+        if ($order === 'ASC') {
+            $this->setCount(-($this->count));
+        }
 
         return $this;
     }

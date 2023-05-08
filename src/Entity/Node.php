@@ -42,9 +42,6 @@ class Node
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
-    private array $tags = [];
-
     #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?Region $region = null;
 
@@ -138,18 +135,6 @@ class Node
     public function setSynopsis(string $synopsis): self
     {
         $this->synopsis = $synopsis;
-
-        return $this;
-    }
-
-    public function getTags(): array
-    {
-        return $this->tags;
-    }
-
-    public function setTags(?array $tags): self
-    {
-        $this->tags = $tags;
 
         return $this;
     }
