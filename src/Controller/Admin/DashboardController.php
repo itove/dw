@@ -57,10 +57,11 @@ class DashboardController extends AbstractDashboardController
     public function configureActions(): Actions
     {
         return Actions::new()
-            ->disable('delete')
+            // ->disable('delete')
             ->add('detail', 'edit')
             ->add('index', 'edit')
             ->add('index', 'new')
+            ->add('index', 'delete')
             ->add(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
             ->add(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN)
             ->add(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE)
