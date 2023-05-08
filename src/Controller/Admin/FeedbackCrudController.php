@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Feedback;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 class FeedbackCrudController extends AbstractCrudController
 {
@@ -17,6 +18,10 @@ class FeedbackCrudController extends AbstractCrudController
     {
         return $actions
             ->disable('new')
+            ->disable('edit')
+            ->add('index', 'detail')
+            ->remove('index', 'delete')
+            ->addBatchAction(Action::BATCH_DELETE)
         ;
     }
 
