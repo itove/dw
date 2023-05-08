@@ -429,56 +429,18 @@
 
         <div class="row">
 
+        {% for i in price_list %}
           <div class="col-lg-4 col-md-6">
-            <div class="box">
-              <h3>Free</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li class="na">Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
-              </ul>
+            <div class="box {{ loop.index == 2 ? 'recommended' }}">
+              <h3>{{ i }}</h3>
+              <h4><sup>¥</sup>{{ i.synopsis }}<span> / 月</span></h4>
+              {{ i.body|raw }}
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="#" class="btn-buy">预 定</a>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-            <div class="box recommended">
-              <h3>Business</h3>
-              <h4><sup>$</sup>19<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
-              <h3>Developer</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
 
         </div>
 
@@ -497,16 +459,9 @@
         <div class="faq-list">
           <ul>
           {% for i in faq_list %}
-          {% if loop.first %}
-          {% set show = 'show' %}
-          {% set collapse = 'collapse' %}
-          {% else %}
-          {% set show = '' %}
-          {% set collapse = 'collapsed' %}
-          {% endif %}
             <li data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="{{ collapse }}" data-bs-target="#faq-list-{{ loop.index }}">{{ i }}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-{{ loop.index }}" class="collapse {{ show }}" data-bs-parent=".faq-list">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="{{ loop.first ? 'collapse' : 'collapsed'}}" data-bs-target="#faq-list-{{ loop.index }}">{{ i }}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-{{ loop.index }}" class="collapse {{ loop.first ? 'show'}}" data-bs-parent=".faq-list">
                 <p>
                 {{ i.synopsis }}
                 </p>
