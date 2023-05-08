@@ -156,6 +156,7 @@ class NodeCrudController extends AbstractCrudController
             ;
             yield AssociationField::new('tag')
                 ->onlyOnForms()
+                ->setRequired(true)
             ;
             yield TextareaField::new('body')
                 ->onlyOnForms()
@@ -187,6 +188,7 @@ class NodeCrudController extends AbstractCrudController
             }
             yield AssociationField::new('tag')
                 ->onlyOnForms()
+                ->setRequired(true)
                 ->setQueryBuilder(
                     fn (QueryBuilder $qb) => $qb
                         ->andWhere("entity.label {$where}")
