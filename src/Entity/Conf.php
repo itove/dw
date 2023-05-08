@@ -41,6 +41,15 @@ class Conf
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $wx = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $twitter = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $facebook = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $linkedin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +159,42 @@ class Conf
     public function setWx(?string $wx): self
     {
         $this->wx = $wx;
+
+        return $this;
+    }
+
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    public function setTwitter(?string $twitter): self
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): self
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
 
         return $this;
     }

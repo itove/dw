@@ -28,6 +28,9 @@ class ConfCrudController extends AbstractCrudController
             TextField::new('icp'),
             TextField::new('weibo'),
             TextField::new('wx'),
+            TextField::new('twitter'),
+            TextField::new('facebook'),
+            TextField::new('linkedin'),
         ];
     }
 
