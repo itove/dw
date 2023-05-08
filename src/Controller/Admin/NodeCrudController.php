@@ -184,11 +184,15 @@ class NodeCrudController extends AbstractCrudController
                 ->onlyOnForms()
             ;
         }
-        yield TextareaField::new('synopsis')
+        $synopsis_label = '';
+        if (!is_null($this->query->get('synopsis'))) {
+            $synopsis_label = $this->query->get('synopsis');
+        }
+        yield TextareaField::new('synopsis', $synopsis_label)
             // ->setMaxLength(15)
         ;
         if (!is_null($this->query->get('body'))) {
-            yield TextareaField::new('body')
+            yield TextareaField::new('body', $this->query->get('body'))
                 ->onlyOnForms()
             ;
             yield DateTimeField::new('createdAt')

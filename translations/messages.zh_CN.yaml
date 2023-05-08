@@ -7,7 +7,6 @@ Dashboard: 数据统计
 Product: 产品
 User: 用户
 Price: 价格
-Amount: 金额
 Date: 日期
 Name: 名称
 Contact: 联系人
@@ -30,3 +29,4 @@ Email: 邮箱
 Icp: 备案信息
 Weibo: 微博
 Wx: 微信公众号
+Feature: 功能
