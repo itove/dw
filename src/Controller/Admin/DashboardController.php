@@ -168,6 +168,11 @@ class DashboardController extends AbstractDashboardController
             ->setQueryParameter('body', 'Body')
         ;
         yield MenuItem::section('系统管理');
+        yield MenuItem::linkToCrud('修改密码', 'fas fa-list', User::class)
+            ->setQueryParameter('action', 'chpw')
+            ->setAction('edit')
+            ->setEntityId($this->getUser()->getId())
+            ;
         yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class)
             ->setAction('detail')

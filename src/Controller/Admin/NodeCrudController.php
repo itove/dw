@@ -38,7 +38,7 @@ class NodeCrudController extends AbstractCrudController
 
     public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
-        $this->query= $requestStack->getCurrentRequest()->query;
+        $this->query = $requestStack->getCurrentRequest()->query;
         $region_label = $this->query->get('region');
         if (!is_null($region_label)) {
             $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
