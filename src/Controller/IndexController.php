@@ -24,22 +24,27 @@ class IndexController extends AbstractController
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
         $nodeRepo = $this->doctrine->getRepository(Node::class);
-        $regionRepo = $this->doctrine->getRepository(Region::class);
-        $about = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'about'])]);
-        $product = $nodeRepo->findOneBy(['region' => $regionRepo->findOneBy(['label' => 'product'])]);
-        $product_list = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'product_list'])]);
-        $why = $nodeRepo->findOneBy(['region' => $regionRepo->findOneBy(['label' => 'why'])]);
-        $why_list = $nodeRepo->findBy(['region' => $regionRepo->findOneBy(['label' => 'why_list'])]);
+        $regions = $this->doctrine->getRepository(Region::class)->findAll();
         
-        return $this->render('index/index.html.twig', [
+        $arr = [
             'description' => $conf->getDescription(),
             'keywords' => $conf->getKeywords(),
             'site_name' => $conf->getName(),
-            'about' => $about,
-            'product' => $product,
-            'product_list' => $product_list,
-            'why' => $why,
-            'why_list' => $why_list,
-        ]);
+            'icp' => $conf->getIcp(),
+            'address' => $conf->getAddress(),
+            'phone' => $conf->getPhone(),
+            'email' => $conf->getEmail(),
+            'conf' => $conf,
+        ];
+        
+        foreach($regions as $r ) {
+            if (str_ends_with($r->getLabel(), '_list') || $r->getLabel() === 'about') {
+                $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r]);
+            } else {
+                $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
+            }
+        }
+        
+        return $this->render('index/index.html.twig', $arr);
     }
 }
