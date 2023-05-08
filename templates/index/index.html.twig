@@ -674,12 +674,10 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>湖北多维信息技术有限公司</h3>
-              <p>湖北省十堰市张湾区<br>
-              凯旋大道188号 <br>
-              十堰小微企业创新创业园3楼E67号 <br>
-                <strong>电话:</strong> +86 138 8888 8888<br>
-                <strong>邮箱:</strong> support@hbdwxx.cn<br>
+              <h3>{{ site_name }}</h3>
+              <p>{{ address }} <br>
+                <strong>电话:</strong> {{ phone }}<br>
+                <strong>邮箱:</strong> {{ email }}<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -728,14 +726,14 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>湖北多维信息技术有限公司</span></strong>. 版权所有
+        &copy; Copyright <strong><span>{{ site_name }}</span></strong>. 版权所有
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/groovin-free-bootstrap-theme/ -->
-        <a href="https://beian.miit.gov.cn">鄂ICP备15003690号-3</a>
+        <a href="https://beian.miit.gov.cn">{{ icp }}</a>
       </div>
     </div>
   </footer><!-- End Footer -->
