@@ -164,7 +164,10 @@ class DashboardController extends AbstractDashboardController
         ;
         yield MenuItem::section('系统管理');
         yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class);
+        yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class)
+            ->setAction('detail')
+            ->setEntityId(1)
+        ;
         
         yield MenuItem::section('Super Admin');
         yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
