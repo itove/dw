@@ -88,7 +88,7 @@ class DashboardController extends AbstractDashboardController
         $region_about = $regions->findOneBy(['label' => 'about']);
         $abouts = $this->nodes->findBy(['region' => $region_about]);
         foreach ($abouts as $i) {
-            yield MenuItem::linkToCrud($i, 'fas fa-list', Node::class)
+            yield MenuItem::linkToCrud($i, 'fas fa-note-sticky', Node::class)
                 ->setQueryParameter('region', 'about')
                 ->setAction('detail')
                 ->setEntityId($i->getId());
@@ -96,7 +96,7 @@ class DashboardController extends AbstractDashboardController
         }
         
         yield MenuItem::section('产品方案');
-        yield MenuItem::linkToCrud('产品及服务', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('产品及服务', 'fas fa-server', Node::class)
             ->setQueryParameter('region', 'product')
             ->setAction('detail')
             ->setEntityId(10);
@@ -106,7 +106,7 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('我们的优势');
-        yield MenuItem::linkToCrud('我们的优势', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('我们的优势', 'fas fa-bullhorn', Node::class)
             ->setQueryParameter('region', 'why')
             ->setAction('detail')
             ->setEntityId(17);
@@ -116,7 +116,7 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('典型案例');
-        yield MenuItem::linkToCrud('典型案例', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('典型案例', 'fas fa-book', Node::class)
             ->setQueryParameter('region', 'portfolio')
             ->setAction('detail')
             ->setEntityId(21);
@@ -128,7 +128,7 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('团队介绍');
-        yield MenuItem::linkToCrud('团队成员', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('团队成员', 'fas fa-people-group', Node::class)
             ->setQueryParameter('region', 'team')
             ->setAction('detail')
             ->setEntityId(31);
@@ -139,7 +139,7 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('产品价格');
-        yield MenuItem::linkToCrud('产品价格', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('产品价格', 'fas fa-money-bill-wave-alt', Node::class)
             ->setQueryParameter('region', 'price')
             ->setAction('detail')
             ->setEntityId(36);
@@ -151,7 +151,7 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('常见问题');
-        yield MenuItem::linkToCrud('常见问题', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('常见问题', 'fas fa-question-circle', Node::class)
             ->setQueryParameter('region', 'faq')
             ->setAction('detail')
             ->setEntityId(37);
@@ -161,35 +161,35 @@ class DashboardController extends AbstractDashboardController
         ;
         
         yield MenuItem::section('联系我们');
-        yield MenuItem::linkToCrud('联系我们', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('联系我们', 'fas fa-contact-card', Node::class)
             ->setQueryParameter('region', 'contact')
             ->setAction('detail')
             ->setEntityId(38);
         ;
-        yield MenuItem::linkToCrud('联系信息', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('联系信息', 'fas fa-phone', Node::class)
             ->setQueryParameter('region', 'contact_list')
         ;
         
         yield MenuItem::section('企业动态');
-        yield MenuItem::linkToCrud('企业动态', 'fas fa-list', Node::class)
+        yield MenuItem::linkToCrud('企业动态', 'fas fa-feed', Node::class)
             ->setQueryParameter('region', 'news_list')
             ->setQueryParameter('img', '1')
             ->setQueryParameter('tag', 'nodash')
             ->setQueryParameter('body', 'Body')
         ;
         yield MenuItem::section('系统管理');
-        yield MenuItem::linkToCrud('修改密码', 'fas fa-list', User::class)
+        yield MenuItem::linkToCrud('修改密码', 'fas fa-key', User::class)
             ->setQueryParameter('action', 'chpw')
             ->setAction('edit')
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
-            yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
-            yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class)
+            yield MenuItem::linkToCrud('用户管理', 'fas fa-users', User::class);
+            yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
                 ->setAction('detail')
                 ->setEntityId(1)
             ;
-            yield MenuItem::linkToCrud('客户反馈', 'fas fa-list', Feedback::class);
+            yield MenuItem::linkToCrud('客户反馈', 'fas fa-message', Feedback::class);
         }
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
