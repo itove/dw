@@ -34,7 +34,6 @@ class IndexController extends AbstractController
             'address' => $conf->getAddress(),
             'phone' => $conf->getPhone(),
             'email' => $conf->getEmail(),
-            'conf' => $conf,
         ];
         
         foreach($regions as $r ) {
