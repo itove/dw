@@ -59,17 +59,22 @@ class NodeController extends AbstractController
     }
     
     #[Route('/news/{tag}', name: 'app_news_list')]
-    public function showPrivacy($tag): Response
+    public function listNews($tag): Response
+    {
+    }
+    
+    #[Route('/news/{id}', name: 'app_news_detail')]
+    public function showNews($id): Response
     {
     }
     
     #[Route('/product/{id}', name: 'app_product')]
-    public function showPrivacy($id): Response
+    public function showProduct($id): Response
     {
     }
     
     #[Route('/portfolio/{id}', name: 'app_portfolio')]
-    public function showPrivacy($id): Response
+    public function showPortfolio($id): Response
     {
     }
     
