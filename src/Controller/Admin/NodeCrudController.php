@@ -180,11 +180,16 @@ class NodeCrudController extends AbstractCrudController
             yield ArrayField::new('tag')
                 ->hideOnForm()
             ;
+            if ($this->query->get('tag') === 'nodash') {
+                $where = "not like '%-%'";
+            } else {
+                $where = "like '{$this->query->get('tag')}-%'";
+            }
             yield AssociationField::new('tag')
                 ->onlyOnForms()
                 ->setQueryBuilder(
                     fn (QueryBuilder $qb) => $qb
-                        ->andWhere("entity.label not like '%-%'")
+                        ->andWhere("entity.label {$where}")
                 )
             ;
         }
