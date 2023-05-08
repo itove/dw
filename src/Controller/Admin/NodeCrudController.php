@@ -131,6 +131,17 @@ class NodeCrudController extends AbstractCrudController
             )
         ;
     }
+    
+    public function configureCrud(Crud $crud): Crud
+    {
+        if (!is_null($this->region)) {
+            return $crud
+                ->setPageTitle('index', $this->region)
+            ;
+        } else {
+            return $crud;
+        }
+    }
 
     public function configureFields(string $pageName): iterable
     {
