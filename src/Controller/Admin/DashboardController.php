@@ -82,6 +82,7 @@ class DashboardController extends AbstractDashboardController
     {
         $regions = $this->doctrine->getRepository(Region::class);
         
+        yield MenuItem::linkToUrl('前台首页', 'fas fa-home', '/');
         yield MenuItem::section('关于我们');
         
         $region_about = $regions->findOneBy(['label' => 'about']);
