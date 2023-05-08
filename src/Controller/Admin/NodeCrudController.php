@@ -188,7 +188,7 @@ class NodeCrudController extends AbstractCrudController
                 )
             ;
         }
-        $synopsis_label = '';
+        $synopsis_label = null;
         if (!is_null($this->query->get('synopsis'))) {
             $synopsis_label = $this->query->get('synopsis');
         }
