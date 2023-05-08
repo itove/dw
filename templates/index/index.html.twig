@@ -377,12 +377,15 @@
         </div>
 
         <div class="form">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+          <form action="feedback/new" method="post" role="form" class="php-email-form">
             <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="您的姓名" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="col-md-4 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="您的姓名" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
               </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
+              <div class="col-md-4 form-group">
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="您的电话" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              </div>
+              <div class="col-md-4 form-group mt-3 mt-md-0">
                 <input type="email" class="form-control" name="email" id="email" placeholder="您的邮箱" data-rule="email" data-msg="Please enter a valid email">
               </div>
             </div>
@@ -393,9 +396,9 @@
               <textarea class="form-control" name="message" rows="5" placeholder="内容" required></textarea>
             </div>
             <div class="my-3">
-              <div class="loading">Loading</div>
+              <div class="loading">加载中...</div>
               <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="sent-message">信息已发送，感谢您的支持！</div>
             </div>
             <div class="text-center"><button type="submit">发送</button></div>
           </form>
