@@ -173,17 +173,20 @@ class DashboardController extends AbstractDashboardController
             ->setAction('edit')
             ->setEntityId($this->getUser()->getId())
             ;
-        yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class)
-            ->setAction('detail')
-            ->setEntityId(1)
-        ;
-        yield MenuItem::linkToCrud('客户反馈', 'fas fa-list', Feedback::class);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('用户管理', 'fas fa-list', User::class);
+            yield MenuItem::linkToCrud('系统设置', 'fas fa-list', Conf::class)
+                ->setAction('detail')
+                ->setEntityId(1)
+            ;
+            yield MenuItem::linkToCrud('客户反馈', 'fas fa-list', Feedback::class);
+        }
         
-        yield MenuItem::section('Super Admin');
-        yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
-        yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
-        yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class)
-        ;
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            yield MenuItem::section('Super Admin');
+            yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
+            yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
+            yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
+        }
     }
 }
