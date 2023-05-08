@@ -1618,8 +1618,8 @@ section {
 }
 #node-content{
   max-width: 600px;
-  margin: auto;
 }
-#node-content h2{
-  text-align: center;
+#node-content .synopsis{
+  font-weight: bold;
+  font-size: 1.1rem;
 }

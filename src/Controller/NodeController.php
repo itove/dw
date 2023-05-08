@@ -49,6 +49,13 @@ class NodeController extends AbstractController
                 $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
             }
         }
+        
+        // is number
+        if ($slug) {
+            $node = $this->doctrine->getRepository(Node::class)->find($slug);
+            $arr['node'] = $node;
+        }
+        
         return $this->render('node/detail.html.twig', $arr);
     }
 }

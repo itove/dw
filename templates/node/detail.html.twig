@@ -5,10 +5,15 @@
 {% block title %}{{ site_name }}{% endblock %}
 
 {% block main %}
-  <section id="">
-  </section>
-<main id="node-content">
-<h2>test</h2>
-<p>dasf</p>
+<section></section>
+<main id="node-content" class="m-auto">
+{% if node.img %}
+<img class="w-100 rounded mb-5" src="/img/{{ node.img }}">
+{% endif %}
+<h2 class="text-center">{{ node }}</h2>
+<p class="synopsis my-5">{{ node.synopsis }} </p>
+<div>
+{{ node.body|raw }}
+</div>
 </main>
 {% endblock %}
