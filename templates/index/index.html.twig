@@ -542,57 +542,29 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>常见问题</h2>
-          <p>如果您有任何疑问，可参考常见问题。如果常见问题不能解答您的疑问，请与我们联系。</p>
+          <h2>{{ faq }}</h2>
+          <p>{{ faq.synopsis }}</p>
         </div>
 
         <div class="faq-list">
           <ul>
-            <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+          {% for i in faq_list %}
+          {% if loop.first %}
+          {% set show = 'show' %}
+          {% set collapse = 'collapse' %}
+          {% else %}
+          {% set show = '' %}
+          {% set collapse = 'collapsed' %}
+          {% endif %}
+            <li data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="{{ collapse }}" data-bs-target="#faq-list-{{ loop.index }}">{{ i }}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-{{ loop.index }}" class="collapse {{ show }}" data-bs-parent=".faq-list">
                 <p>
-                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                {{ i.synopsis }}
                 </p>
               </div>
             </li>
-
-            <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
-                <p>
-                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
-                <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
-                <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
-                </p>
-              </div>
-            </li>
-
-            <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
-                <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
-                </p>
-              </div>
-            </li>
-
+          {% endfor %}
           </ul>
         </div>
 
@@ -604,8 +576,8 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>联系我们</h2>
-          <p>如果您有任何关于产品/解决方案的需求，请与我们联系。期待您的支持、反馈与建议。您也可以在下面填写您的详细信息，我们将使用您填写的信息为您提供服务。 请注意，我们重视并尊重您的隐私，仅将您填写的个人信息用于服务目的，不会与第三方共享。 如您想了解更多信息，请详细阅读隐私声明。</p>
+          <h2>{{ contact }}</h2>
+          <p>{{ contact.synopsis }}</p>
         </div>
 
         <div class="row contact-info">
@@ -614,7 +586,7 @@
             <div class="contact-address">
               <i class="bi bi-geo-alt"></i>
               <h3>地址</h3>
-              <address>湖北省十堰市张湾区凯旋大道188号十堰小微企业创新创业园3楼E67号</address>
+              <address>{{ address }}</address>
             </div>
           </div>
 
@@ -622,7 +594,7 @@
             <div class="contact-phone">
               <i class="bi bi-phone"></i>
               <h3>电话</h3>
-              <p><a href="tel:+8613888888888">+86 138 8888 8888</a></p>
+              <p><a href="tel:{{ phone }}">{{ phone }}</a></p>
             </div>
           </div>
 
@@ -630,7 +602,7 @@
             <div class="contact-email">
               <i class="bi bi-envelope"></i>
               <h3>邮箱</h3>
-              <p><a href="mailto:support@hbdwxx.cn">support@hbdwxx.cn</a></p>
+              <p><a href="mailto:{{ email }}">{{ email }}</a></p>
             </div>
           </div>
 
