@@ -1616,3 +1616,10 @@ section {
   font-size: 13px;
   color: #fff;
 }
+#node-content{
+  max-width: 600px;
+  margin: auto;
+}
+#node-content h2{
+  text-align: center;
+}
