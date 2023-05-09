@@ -6,19 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Tag;
-use App\Entity\Node;
 use App\Service\Data;
 use Symfony\Component\HttpFoundation\Request;
 
 class NodeController extends AbstractController
 {
-    private $doctrine;
     private $data;
     
-    public function __construct(ManagerRegistry $doctrine, Data $data)
+    public function __construct(Data $data)
     {
-        $this->doctrine = $doctrine;
         $this->data = $data;
     }
     
@@ -31,23 +27,23 @@ class NodeController extends AbstractController
         return $this->render('node/node.html.twig', $arr);
     }
     
-    #[Route('/blog/{tag}', name: 'app_news_list')]
-    public function listNews($tag, Request $request): Response
+    #[Route('/blog/{tagLabel}', name: 'app_news_list')]
+    public function listNews($tagLabel, Request $request): Response
     {
         $page = $request->query->get('p');
         $limit = 20;
-        if (is_null($page)) {
+        if (is_null($page) || empty($page)) {
           $page = 1;
         }
         $offset = $limit * ($page - 1);
         
-        $tagInstance = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $tag]);
-        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
-        $nodes_all = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag]);
+        $nodes = $this->data->getNodeByTag($tagLabel, $limit, $offset);
+        $nodes_all = $this->data->getNodeByTag($tagLabel);
+        $tag = $this->data->getTagByLabel($tagLabel);
 
         $arr = $this->data->get();
         $arr['page_title'] = '企业动态';
-        $arr['node'] = $tagInstance;
+        $arr['node'] = $tag;
         $arr['nodes'] = $nodes;
         $arr['page'] = $page;
         $arr['page_count'] = ceil(count($nodes_all) / $limit);

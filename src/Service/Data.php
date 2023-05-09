@@ -11,6 +11,7 @@ namespace App\Service;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Conf;
 use App\Entity\Node;
+use App\Entity\Tag;
 use App\Entity\Region;
 
 class Data
@@ -56,6 +57,18 @@ class Data
         }
         
         return $arr;
+    }
+    
+    public function getNodeByTag(string $tag, $limit = null, $offset = null)
+    {
+        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
+        return $nodes;
+    }
+    
+    public function getTagByLabel(string $label)
+    {
+        $tag = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $label]);
+        return $tag;
     }
 }
 
