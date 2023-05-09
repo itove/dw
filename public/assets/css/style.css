@@ -1629,3 +1629,10 @@ section {
 #node-content figure img{
   max-width: 100%;
 }
+.page-link{
+  color: #5ea027;
+}
+.active>.page-link, .page-link.active {
+  background-color: #5ea027;
+  border-color: #5ea027;
+}
