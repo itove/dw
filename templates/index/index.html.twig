@@ -24,7 +24,7 @@
                 <h2 class="animate__animated animate__fadeInDown">{{ i }}</h2>
                 <p class="animate__animated animate__fadeInUp">{{ i.synopsis }}</p>
                 <div>
-                  <a href="/node/{{ i.id }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
+                  <a href="/blog/{{ i.id }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@
         {% for i in product_list %}
           <div class="col-lg-4 col-md-6 icon-box">
             <div class="icon"><i class="bi bi-{{ i.icon }}"></i></div>
-            <h4 class="title"><a href="/node/{{ i.id }}">{{ i }}</a></h4>
+            <h4 class="title"><a href="/product/{{ i.id }}">{{ i }}</a></h4>
             <p class="description">{{ i.synopsis }}</p>
           </div>
         {% endfor %}

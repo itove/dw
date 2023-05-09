@@ -19,7 +19,7 @@ class NodeController extends AbstractController
         $this->doctrine = $doctrine;
     }
     
-    #[Route('/node/{slug}', name: 'app_node_show')]
+    #[Route('/blog/{slug}', name: 'app_node_show')]
     public function showNode($slug): Response
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
@@ -52,13 +52,15 @@ class NodeController extends AbstractController
         // is number
         if ($slug) {
             $node = $this->doctrine->getRepository(Node::class)->find($slug);
+            $arr['page_title'] = '企业动态';
+            $arr['node_title'] = $node->getTitle();
             $arr['node'] = $node;
         }
         
         return $this->render('node/detail.html.twig', $arr);
     }
     
-    #[Route('/news/{tag}', name: 'app_news_list')]
+    #[Route('/blog/{tag}', name: 'app_news_list')]
     public function listNews($tag): Response
     {
     }
