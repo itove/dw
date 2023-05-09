@@ -170,7 +170,7 @@ CREATE TABLE `node` (
   PRIMARY KEY (`id`),
   KEY `IDX_857FE84598260155` (`region_id`),
   CONSTRAINT `FK_857FE84598260155` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `node` (
 
 LOCK TABLES `node` WRITE;
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
-INSERT INTO `node` VALUES (1,'湖北多维信息技术有限公司','2023-05-05 09:41:03',NULL,NULL,NULL,'我们坚持以“技术创新、服务为本”为经营理念，深耕信息技术领域，为不同行业、不同规模、不同成长阶段的企事业单位提供优质、专业的信息化解决方案和落地服务；深耕内控体系建设领域，为不同层级的行政事业单位提供内控体系建设服务。',1,NULL);
+INSERT INTO `node` VALUES (1,'公司简介','2023-05-05 09:41:03',NULL,NULL,NULL,'我们坚持以“技术创新、服务为本”为经营理念，深耕信息技术领域，为不同行业、不同规模、不同成长阶段的企事业单位提供优质、专业的信息化解决方案和落地服务；深耕内控体系建设领域，为不同层级的行政事业单位提供内控体系建设服务。',1,NULL);
 INSERT INTO `node` VALUES (2,'企业愿景','2023-05-05 09:44:04',NULL,'receipt',NULL,'持续不断让客户体验到我们致力于为每个客户创造价值',1,NULL);
 INSERT INTO `node` VALUES (3,'企业文化','2023-05-05 09:45:51',NULL,'cube-alt',NULL,'尊重规则流程，一次把事情做对；发挥员工潜能，持续改进',1,NULL);
 INSERT INTO `node` VALUES (4,'服务宗旨','2023-05-05 09:46:35',NULL,'images',NULL,'承诺向客户提供高质量的产品、服务和解决方案',1,NULL);
@@ -194,7 +194,7 @@ INSERT INTO `node` VALUES (12,'电子会计档案','2023-05-05 09:59:41',NULL,'c
 INSERT INTO `node` VALUES (13,'数据服务','2023-05-05 10:00:34',NULL,'bar-chart',NULL,'为企业、行政事业单位提供数据资源深度融合、行业主题数据分析、行业监测及预警以及数据挖掘服务，让数据发声，智慧决策。',8,NULL);
 INSERT INTO `node` VALUES (14,'协同办公','2023-05-05 10:01:37',NULL,'binoculars',NULL,'全新的设计理念，全新的管理思维，为中大型组织架设高效办公模式，让组织内部的沟通协作畅通无阻，流程落地有效执行，让人员少跑路，满足各类读懂办公需要。',8,NULL);
 INSERT INTO `node` VALUES (15,'集成服务','2023-05-05 10:02:24',NULL,'brightness-high',NULL,'汇聚行业和领域经验，深化应用，为15个大行业，68个细分行业，提供涵盖财务、供应链、制造、营销、人力资本等7大领域，23个细分领域的行业实践。',8,NULL);
-INSERT INTO `node` VALUES (16,'政府财务','2023-05-05 10:03:04',NULL,'calendar4-week',NULL,'行业内率先推出满足政府新会计制度要求的新一代财务管理解决方案，旨在为广大财务人员提供设计规范、操作便捷的信息化产品和服务。',8,NULL);
+INSERT INTO `node` VALUES (16,'政府财务','2023-05-05 10:03:04',NULL,'calendar4-week','slide-2-6459bd12b7c89423702307.jpg','行业内率先推出满足政府新会计制度要求的新一代财务管理解决方案，旨在为广大财务人员提供设计规范、操作便捷的信息化产品和服务。',8,'2023-05-09 03:25:06');
 INSERT INTO `node` VALUES (17,'我们的优势','2023-05-05 10:03:55',NULL,NULL,NULL,'协助企业完成数据质量治理，实现企业内部、外部数据资源的深度整合，数据互通互融，构建企业数据资源池，实现数据的监测与预警，实现数据应用价值的深度挖掘。让数据鲜活、灵动。让数据发声，智慧管理。',7,NULL);
 INSERT INTO `node` VALUES (18,'深厚的技术力量','2023-05-05 10:04:22',NULL,NULL,NULL,'敬业务实的专业人员，科学化的团队管理，高效的运营理念',9,NULL);
 INSERT INTO `node` VALUES (19,'丰富的行业经验','2023-05-05 10:04:50',NULL,NULL,NULL,'凭借多年的行业实践经验，把握行业的发展趋势，形成自己的独特见解',9,NULL);
@@ -225,12 +225,15 @@ INSERT INTO `node` VALUES (43,'常见问题5','2023-05-07 06:00:13',NULL,NULL,NU
 INSERT INTO `node` VALUES (44,'地址','2023-05-07 06:06:53',NULL,NULL,NULL,'湖北省十堰市张湾区凯旋大道188号十堰小微企业创新创业园3楼E67号',16,NULL);
 INSERT INTO `node` VALUES (45,'电话','2023-05-07 06:07:12',NULL,NULL,NULL,'+86 138 8888 8888',16,NULL);
 INSERT INTO `node` VALUES (46,'邮箱','2023-05-07 06:07:29',NULL,NULL,NULL,'support@hbdwxx.cn',16,NULL);
-INSERT INTO `node` VALUES (47,'科技创造美好未来','2023-05-07 06:31:48','<p>科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p><p>科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p>',NULL,'slide-1-645883929ebac385535569.jpg','科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。',5,'2023-05-08 05:07:30');
+INSERT INTO `node` VALUES (47,'开放、合作、共赢','2023-05-07 09:09:02','<figure class=\"image\"><img src=\"/img/6459ca1b172fe-slide-1.jpg\"></figure><figure class=\"image\"><img src=\"/img/6459ca12a0c21-slide-3.jpg\"></figure><p>&nbsp;</p>',NULL,'slide-3-645883a78b374712391188.jpg','与不同行业的合作，促进跨领域、跨技术和跨手段的交流和协作，携手构建适应产业健康和谐发展的生态环境，推动数字经济发展。',5,'2023-05-08 05:07:51');
 INSERT INTO `node` VALUES (49,'用户为本，科技向善','2023-05-07 07:23:22',NULL,NULL,'slide-2-6458839c029af971078891.jpg','一切以用户价值为依归，将社会责任融入产品及服务之中；推动科技创新与文化传承，助力各行各业升级，促进社会的可持续发展。',5,'2023-05-08 05:07:40');
-INSERT INTO `node` VALUES (52,'开放、合作、共赢','2023-05-07 09:09:02',NULL,NULL,'slide-3-645883a78b374712391188.jpg','与不同行业的合作，促进跨领域、跨技术和跨手段的交流和协作，携手构建适应产业健康和谐发展的生态环境，推动数字经济发展。',5,'2023-05-08 05:07:51');
+INSERT INTO `node` VALUES (52,'科技创造美好未来','2023-05-07 06:31:48','<p>科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p><p>科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p>',NULL,'slide-1-645883929ebac385535569.jpg','科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。',5,'2023-05-08 05:07:30');
 INSERT INTO `node` VALUES (57,'免费','2023-05-08 03:48:47','<ul><li>Aida dere</li><li>Nec feugiat nisl</li><li>Nulla at volutpat dola</li><li>Pharetra massa</li><li>Massa ultricies mi</li></ul>',NULL,NULL,'0',13,NULL);
 INSERT INTO `node` VALUES (58,'商务','2023-05-08 03:49:13','<ul><li>Aida dere</li><li>Nec feugiat nisl</li><li>Nulla at volutpat dola</li><li>Pharetra massa</li><li>Massa ultricies mi</li></ul>',NULL,NULL,'19',13,NULL);
 INSERT INTO `node` VALUES (59,'开发','2023-05-08 03:49:31','<ul><li>Aida dere</li><li>Nec feugiat nisl</li><li>Nulla at volutpat dola</li><li>Pharetra massa</li><li>Massa ultricies mi</li></ul>',NULL,NULL,'29',13,NULL);
+INSERT INTO `node` VALUES (68,'用户条款','2023-05-09 03:47:02','<p>用户条款正文</p>',NULL,NULL,'用户条款概要',17,NULL);
+INSERT INTO `node` VALUES (69,'隐私声明','2023-05-09 03:47:44','<p>隐私声明正文</p>',NULL,NULL,'隐私声明概要',17,NULL);
+INSERT INTO `node` VALUES (70,'行业动态1','2023-05-09 07:22:03','<p>行业动态1正文</p>',NULL,'slide-2-6459f49b765bd193217099.jpg','行业动态1概要',5,'2023-05-09 07:22:03');
 /*!40000 ALTER TABLE `node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,6 +281,9 @@ INSERT INTO `node_tag` VALUES (49,1);
 INSERT INTO `node_tag` VALUES (49,2);
 INSERT INTO `node_tag` VALUES (52,1);
 INSERT INTO `node_tag` VALUES (52,2);
+INSERT INTO `node_tag` VALUES (68,7);
+INSERT INTO `node_tag` VALUES (69,8);
+INSERT INTO `node_tag` VALUES (70,3);
 /*!40000 ALTER TABLE `node_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +301,7 @@ CREATE TABLE `region` (
   `menu` tinyint(1) NOT NULL,
   `count` smallint(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +314,7 @@ INSERT INTO `region` VALUES (1,'关于我们','about',0,-10);
 INSERT INTO `region` VALUES (2,'产品方案','product',0,0);
 INSERT INTO `region` VALUES (3,'典型案例','portfolio',0,0);
 INSERT INTO `region` VALUES (4,'团队介绍','team',0,0);
-INSERT INTO `region` VALUES (5,'企业动态','news_list',0,-3);
+INSERT INTO `region` VALUES (5,'企业动态','news_list',0,3);
 INSERT INTO `region` VALUES (6,'联系我们','contact',0,0);
 INSERT INTO `region` VALUES (7,'我们的优势','why',0,0);
 INSERT INTO `region` VALUES (8,'产品列表','product_list',0,6);
@@ -320,6 +326,7 @@ INSERT INTO `region` VALUES (13,'价格列表','price_list',0,-3);
 INSERT INTO `region` VALUES (14,'常见问题','faq',0,0);
 INSERT INTO `region` VALUES (15,'问题列表','faq_list',0,5);
 INSERT INTO `region` VALUES (16,'联系信息','contact_list',0,3);
+INSERT INTO `region` VALUES (17,'term','term',0,0);
 /*!40000 ALTER TABLE `region` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,7 +342,7 @@ CREATE TABLE `tag` (
   `name` varchar(20) NOT NULL,
   `label` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -345,11 +352,13 @@ CREATE TABLE `tag` (
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;
 INSERT INTO `tag` VALUES (1,'轮播图','carousel');
-INSERT INTO `tag` VALUES (2,'公司新闻','news_company');
-INSERT INTO `tag` VALUES (3,'行业动态','news_industry');
+INSERT INTO `tag` VALUES (2,'公司新闻','news');
+INSERT INTO `tag` VALUES (3,'行业动态','industry');
 INSERT INTO `tag` VALUES (4,'智慧办公','portfolio-office');
 INSERT INTO `tag` VALUES (5,'智慧数据','portfolio-data');
 INSERT INTO `tag` VALUES (6,'智慧财务','portfolio-accounting');
+INSERT INTO `tag` VALUES (7,'用户条款','term-policy');
+INSERT INTO `tag` VALUES (8,'隐私声明','term-privacy');
 /*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-08 17:17:38
+-- Dump completed on 2023-05-09 15:44:44
