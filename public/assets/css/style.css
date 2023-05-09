@@ -1623,3 +1623,9 @@ section {
   font-weight: bold;
   font-size: 1.1rem;
 }
+#node-content figure{
+  text-align: center;
+}
+#node-content figure img{
+  max-width: 100%;
+}

@@ -13,9 +13,10 @@ class ApiController extends AbstractController
     #[Route('/media_objects', methods: ['POST'])]
     public function upload(Request $request): Response
     {
-        dump($request);
         $file = $request->files->get('upload');
-        dump($file);
-        return $this->json(['code' => 0]);
+        $newName = uniqid() . '-' .  $file->getClientOriginalName();
+        // copy($file->getPathname(), 'img/' . $newName);
+        $file->move('img/', $newName);
+        return $this->json(['url' => '/img/' . $newName]);
     }
 }
