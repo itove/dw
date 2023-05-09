@@ -12,6 +12,8 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(Data $data): Response
     {
-        return $this->render('index/index.html.twig', $data->get());
+        $arr = $data->get();
+        $arr['slides'] = $data->getNodeByTag('carousel', 6);
+        return $this->render('index/index.html.twig', $arr);
     }
 }
