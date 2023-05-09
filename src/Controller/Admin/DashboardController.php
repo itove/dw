@@ -23,11 +23,13 @@ class DashboardController extends AbstractDashboardController
 {
     private $doctrine;
     private $nodes;
+    private $conf;
 
     public function __construct(ManagerRegistry $doctrine)
     {
       $this->doctrine = $doctrine;
       $this->nodes = $doctrine->getRepository(Node::class);
+      $this->conf = $doctrine->getRepository(Conf::class)->find(1);
     }
     
     #[Route('/admin', name: 'admin')]
@@ -48,10 +50,8 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
-        // Make sure first one is company name
-        $title = $this->nodes->find(1);
         return Dashboard::new()
-            ->setTitle($title);
+            ->setTitle($this->conf->getName());
     }
     
     public function configureCrud(): Crud
