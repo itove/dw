@@ -191,6 +191,10 @@ class DashboardController extends AbstractDashboardController
                 ->setEntityId(1)
             ;
             yield MenuItem::linkToCrud('客户反馈', 'fas fa-message', Feedback::class);
+            yield MenuItem::linkToCrud('用户条款', 'fas fa-book-open', Node::class)
+                ->setQueryParameter('region', 'term')
+                ->setQueryParameter('body', 'Body')
+            ;
         }
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
