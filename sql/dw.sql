@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.5.19-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: duowei
+-- Host: localhost    Database: dw
 -- ------------------------------------------------------
 -- Server version	10.5.19-MariaDB
 
@@ -279,8 +279,10 @@ INSERT INTO `node_tag` VALUES (47,1);
 INSERT INTO `node_tag` VALUES (47,2);
 INSERT INTO `node_tag` VALUES (49,1);
 INSERT INTO `node_tag` VALUES (49,2);
+INSERT INTO `node_tag` VALUES (49,3);
 INSERT INTO `node_tag` VALUES (52,1);
 INSERT INTO `node_tag` VALUES (52,2);
+INSERT INTO `node_tag` VALUES (52,3);
 INSERT INTO `node_tag` VALUES (68,7);
 INSERT INTO `node_tag` VALUES (69,8);
 INSERT INTO `node_tag` VALUES (70,3);
@@ -387,7 +389,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES (1,'al','[\"ROLE_SUPER_ADMIN\"]','$2y$13$OLyzsTfEdbGY6UfmZ8Nd3.i1bZaoP5s2pWsM0Rsemrn6foBdxfD7W',NULL);
-INSERT INTO `user` VALUES (2,'admin','[\"ROLE_ADMIN\"]','$2y$13$HJlF1WiP9K5kpd2wMBIXDOEVvyJU3yRU061GogzV5vD5WkP8amNOS',NULL);
+INSERT INTO `user` VALUES (2,'admin','[\"ROLE_ADMIN\"]','$2y$13$O5FMXGP6ofZLSKB4KoNaeOx8MMPbd9c58EAYdJujZjCBkqNpyIiwG',NULL);
 INSERT INTO `user` VALUES (4,'u1','[]','$2y$13$0xYTmoQWPRkf2udWHVbnZOLy1Cl4VzVgXAf6ihvNGSOM7r8vKt8n.',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -401,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-09 15:44:44
+-- Dump completed on 2023-05-09 15:57:47
