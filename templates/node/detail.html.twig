@@ -5,14 +5,35 @@
 {% block title %}{{ site_name }}{% endblock %}
 
 {% block main %}
-<main id="node-content" class="mx-auto my-5">
-{% if node.img %}
-<img class="w-100 rounded mb-5" src="/img/{{ node.img }}">
-{% endif %}
-<h2 class="text-center">{{ node }}</h2>
-<p class="synopsis my-5">{{ node.synopsis }} </p>
-<div>
-{{ node.body|raw }}
-</div>
+<main id="main" clss="">
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <img class="w-100" src="/img/{{ node.img }}" alt="">
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>{{ page_title_2 }}</h3>
+              <ul>
+                {% for k, v in params %}
+                <li><strong>{{ k }}</strong>: {{ v }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>{{ node }}</h2>
+              <p>{{ node.synopsis }}</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
 </main>
 {% endblock %}

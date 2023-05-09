@@ -22,7 +22,7 @@ class Data
         $this->doctrine = $doctrine;
     }
     
-    public function get()
+    public function get($nid = null)
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
         $nodeRepo = $this->doctrine->getRepository(Node::class);
@@ -36,6 +36,10 @@ class Data
             'phone' => $conf->getPhone(),
             'email' => $conf->getEmail(),
         ];
+        
+        if (!is_null($nid)) {
+            $arr['node'] = $this->doctrine->getRepository(Node::class)->find($nid);
+        }
         
         foreach($regions as $r ) {
             $limit = $r->getCount();

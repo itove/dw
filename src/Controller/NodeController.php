@@ -9,55 +9,26 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Conf;
 use App\Entity\Node;
 use App\Entity\Region;
+use App\Service\Data;
 
 class NodeController extends AbstractController
 {
     private $doctrine;
+    private $data;
     
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, Data $data)
     {
         $this->doctrine = $doctrine;
+        $this->data = $data;
     }
     
     #[Route('/blog/{slug}', name: 'app_node_show')]
     public function showNode($slug): Response
     {
-        $conf = $this->doctrine->getRepository(Conf::class)->find(1);
-        $nodeRepo = $this->doctrine->getRepository(Node::class);
-        $regions = $this->doctrine->getRepository(Region::class)->findAll();
-        $arr = [
-            'description' => $conf->getDescription(),
-            'keywords' => $conf->getKeywords(),
-            'site_name' => $conf->getName(),
-            'icp' => $conf->getIcp(),
-            'address' => $conf->getAddress(),
-            'phone' => $conf->getPhone(),
-            'email' => $conf->getEmail(),
-        ];
+        $arr = $this->data->get($slug);
+        $arr['page_title'] = '企业动态';
         
-        foreach($regions as $r ) {
-            $limit = $r->getCount();
-            if ($limit > 0) {
-                $order = 'DESC';
-            } else {
-                $order = 'ASC';
-            }
-            if ($limit !== 0) {
-                $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r], ['id' => $order], abs($limit));
-            } else {
-                $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
-            }
-        }
-        
-        // is number
-        if ($slug) {
-            $node = $this->doctrine->getRepository(Node::class)->find($slug);
-            $arr['page_title'] = '企业动态';
-            $arr['node_title'] = $node->getTitle();
-            $arr['node'] = $node;
-        }
-        
-        return $this->render('node/detail.html.twig', $arr);
+        return $this->render('node/node.html.twig', $arr);
     }
     
     #[Route('/blog/{tag}', name: 'app_news_list')]
@@ -73,20 +44,47 @@ class NodeController extends AbstractController
     #[Route('/product/{id}', name: 'app_product')]
     public function showProduct($id): Response
     {
+        $arr = $this->data->get($id);
+        $arr['page_title'] = '产品方案';
+        $arr['page_title_2'] = '产品信息';
+        $arr['params'] = [
+            '类别' => '数据分析',
+        ];
+        
+        return $this->render('node/detail.html.twig', $arr);
     }
     
     #[Route('/portfolio/{id}', name: 'app_portfolio')]
     public function showPortfolio($id): Response
     {
+        $arr = $this->data->get($id);
+        $arr['page_title'] = '典型案例';
+        $arr['page_title_2'] = '案例详情';
+        $arr['params'] = [
+            '类别' => '数据分析',
+            '客户' => '十堰电信',
+            '日期' => '2022年05月18日',
+            '项目地址' => 'www.abc.com',
+        ];
+        
+        return $this->render('node/detail.html.twig', $arr);
     }
     
     #[Route('/privacy', name: 'app_privacy')]
-    public function showPrivacy($slug): Response
+    public function showPrivacy(): Response
     {
+        $arr = $this->data->get(69);
+        $arr['page_title'] = '隐私声明';
+        
+        return $this->render('node/node.html.twig', $arr);
     }
     
     #[Route('/policy', name: 'app_policy')]
-    public function showPolicy($slug): Response
+    public function showPolicy(): Response
     {
+        $arr = $this->data->get(68);
+        $arr['page_title'] = '用户条款';
+        
+        return $this->render('node/node.html.twig', $arr);
     }
 }
