@@ -37,20 +37,20 @@ class NodeController extends AbstractController
         $page = $request->query->get('p');
         $limit = 20;
         if (is_null($page)) {
-          $offset = 0;
-        } else {
-          $offset = $limit * $page;
+          $page = 1;
         }
+        $offset = $limit * ($page - 1);
         
-        $tago = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $tag]);
-        // $nodes = $this->doctrine->getRepository(Node::class)->findBy(['tag' => $tago], ['id' => 'DESC']);
-        $nodes = $tago->getNodes();
-        dump($nodes);
+        $tagInstance = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $tag]);
+        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
+        $nodes_all = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag]);
 
         $arr = $this->data->get();
         $arr['page_title'] = '企业动态';
-        $arr['node'] = $tago;
+        $arr['node'] = $tagInstance;
         $arr['nodes'] = $nodes;
+        $arr['page'] = $page;
+        $arr['page_count'] = ceil(count($nodes_all) / $limit);
         
         return $this->render('node/index.html.twig', $arr);
     }

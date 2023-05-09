@@ -4,23 +4,25 @@
 <main id="main" class="">
 <section class="w-75 m-auto">
   <ul class="">
-  {% for i in 1..20 %}
+  {% for i in nodes %}
   <li class="d-flex justify-content-between">
-  <a class="fs-4" href="">tetffffffffffffffffffffffffffffffffffffffffffffffff</a>
-  <div class="fs-4">2023.a.a.</div>
+  <a class="fs-4" href="/blog/{{ i.id }}">{{ i.title }}</a>
+  <div class="fs-4">{{ i.createdAt|date("m/d/Y") }}</div>
   </li>
   {% endfor %}
   </ul>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link">前一页</a>
+      <li class="page-item {{ page == 1 ? 'disabled'}}">
+        <a class="page-link" href="?p={{ page - 1}}"> < </a>
       </li>
-      <li class="page-item"><a class="page-link" href="?p=1">1</a></li>
-      <li class="page-item"><a class="page-link" href="?p=2">2</a></li>
-      <li class="page-item"><a class="page-link" href="?p=3">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">后一页</a>
+      {% for i in 1..page_count %}
+      <li class="page-item {{ loop.index == page ? 'active'}}">
+        <a class="page-link" href="?p={{ loop.index }}">{{ loop.index }}</a>
+      </li>
+      {% endfor %}
+      <li class="page-item {{ page == page_count ? 'disabled'}}">
+        <a class="page-link" href="?p={{ page + 1}}"> > </a>
       </li>
     </ul>
   </nav>
