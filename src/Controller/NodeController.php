@@ -6,10 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Conf;
+use App\Entity\Tag;
 use App\Entity\Node;
-use App\Entity\Region;
 use App\Service\Data;
+use Symfony\Component\HttpFoundation\Request;
 
 class NodeController extends AbstractController
 {
@@ -22,26 +22,40 @@ class NodeController extends AbstractController
         $this->data = $data;
     }
     
-    #[Route('/blog/{slug}', name: 'app_node_show')]
-    public function showNode($slug): Response
+    #[Route('/blog/{id}', requirements: ['id' => '\d+'], name: 'app_node_show')]
+    public function showNode(int $id): Response
     {
-        $arr = $this->data->get($slug);
+        $arr = $this->data->get($id);
         $arr['page_title'] = '企业动态';
         
         return $this->render('node/node.html.twig', $arr);
     }
     
     #[Route('/blog/{tag}', name: 'app_news_list')]
-    public function listNews($tag): Response
+    public function listNews($tag, Request $request): Response
     {
+        $page = $request->query->get('p');
+        $limit = 20;
+        if (is_null($page)) {
+          $offset = 0;
+        } else {
+          $offset = $limit * $page;
+        }
+        
+        $tago = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $tag]);
+        // $nodes = $this->doctrine->getRepository(Node::class)->findBy(['tag' => $tago], ['id' => 'DESC']);
+        $nodes = $tago->getNodes();
+        dump($nodes);
+
+        $arr = $this->data->get();
+        $arr['page_title'] = '企业动态';
+        $arr['node'] = $tago;
+        $arr['nodes'] = $nodes;
+        
+        return $this->render('node/index.html.twig', $arr);
     }
     
-    #[Route('/news/{id}', name: 'app_news_detail')]
-    public function showNews($id): Response
-    {
-    }
-    
-    #[Route('/product/{id}', name: 'app_product')]
+    #[Route('/product/{id}', requirements: ['id' => '\d+'], name: 'app_product')]
     public function showProduct($id): Response
     {
         $arr = $this->data->get($id);
@@ -54,7 +68,7 @@ class NodeController extends AbstractController
         return $this->render('node/detail.html.twig', $arr);
     }
     
-    #[Route('/portfolio/{id}', name: 'app_portfolio')]
+    #[Route('/portfolio/{id}', requirements: ['id' => '\d+'], name: 'app_portfolio')]
     public function showPortfolio($id): Response
     {
         $arr = $this->data->get($id);

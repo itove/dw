@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta content="{% block desc %}{% endblock %}" name="description">
-        <meta content="{% block keywords %}{% endblock %}" name="keywords">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta content="{{ description }}" name="description">
+        <meta content="{{ keywords|join(', ') }}" name="keywords">
+        <title>{% block title %}{{ site_name }}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
         <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,8 +40,8 @@
               <li><a class="nav-link scrollto" href="/#team">团队介绍</a></li>
               <li class="dropdown"><a href="#"><span>企业动态</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="/node/news">公司新闻</a></li>
-                  <li><a href="/node/industry">行业动态</a></li>
+                  <li><a href="/blog/news">公司新闻</a></li>
+                  <li><a href="/blog/industry">行业动态</a></li>
                 </ul>
               </li>
               <li><a class="nav-link scrollto" href="/#contact">联系我们</a></li>

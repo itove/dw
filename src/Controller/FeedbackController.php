@@ -19,14 +19,6 @@ class FeedbackController extends AbstractController
         $this->doctrine = $doctrine;
     }
     
-    #[Route('/list', name: 'app_feedback_list')]
-    public function index(): Response
-    {
-        return $this->render('feedback/index.html.twig', [
-            'controller_name' => 'FeedbackController',
-        ]);
-    }
-    
     #[Route('/new', methods: ['POST'], name: 'app_feedback_new')]
     public function new(Request $request): Response
     {

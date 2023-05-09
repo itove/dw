@@ -1,18 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block desc %}{{ description }}{% endblock %}
-{% block keywords %}{{ keywords|join(', ') }}{% endblock %}
-{% block title %}{{ site_name }}{% endblock %}
-
 {% block main %}
-<main id="node-content" class="mx-auto my-5">
-{% if node.img %}
-<img class="w-100 rounded mb-5" src="/img/{{ node.img }}">
-{% endif %}
-<h2 class="text-center">{{ node }}</h2>
-<p class="synopsis my-5">{{ node.synopsis }} </p>
-<div>
-{{ node.body|raw }}
-</div>
+<main id="main" class="">
+<section class="w-75 m-auto">
+  <ul class="">
+  {% for i in 1..20 %}
+  <li class="d-flex justify-content-between">
+  <a class="fs-4" href="">tetffffffffffffffffffffffffffffffffffffffffffffffff</a>
+  <div class="fs-4">2023.a.a.</div>
+  </li>
+  {% endfor %}
+  </ul>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link">前一页</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="?p=1">1</a></li>
+      <li class="page-item"><a class="page-link" href="?p=2">2</a></li>
+      <li class="page-item"><a class="page-link" href="?p=3">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">后一页</a>
+      </li>
+    </ul>
+  </nav>
+</section>
 </main>
 {% endblock %}
