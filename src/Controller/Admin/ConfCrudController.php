@@ -36,15 +36,17 @@ class ConfCrudController extends AbstractCrudController
             $this->adminUrlGenerator
                  ->setAction('edit')
                  ->set('entityId', $entity->getId())
+                 ->includeReferrer()
                  ->generateUrl()
         );
         
         return $actions
             ->update(Crud::PAGE_DETAIL, Action::EDIT, $editFn)
             ->disable('new')
+            ->disable(Action::SAVE_AND_ADD_ANOTHER)
         ;
     }
-
+    
     public function configureFields(string $pageName): iterable
     {
         switch ($this->action) {
