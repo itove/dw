@@ -167,8 +167,10 @@ class DashboardController extends AbstractDashboardController
             ->setAction('detail')
             ->setEntityId(38);
         ;
-        yield MenuItem::linkToCrud('联系信息', 'fas fa-phone', Node::class)
-            ->setQueryParameter('region', 'contact_list')
+        yield MenuItem::linkToCrud('联系信息', 'fas fa-phone', Conf::class)
+            ->setQueryParameter('action', 'contact')
+            ->setAction('detail')
+            ->setEntityId(1)
         ;
         
         yield MenuItem::section('企业动态');

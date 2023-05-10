@@ -72,49 +72,23 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $new1 = Action::new('new1', 'New')
-            ->createAsGlobalAction()
-            ->addCssClass('btn btn-primary')
-            ->linkToUrl(function (){
-                return $this->adminUrlGenerator
-                    // ->setController(NodeCrudController::class)
-                    ->setAction('new')
-                    // ->set('menuIndex', 1)
-                    ->generateUrl();
-            })
-            ;
-        
-        $edit1 = Action::new('edit1', 'Edit')
-            // ->addCssClass('btn btn-primary')
-            ->linkToUrl(function (Node $entity){
-                return $this->adminUrlGenerator
-                    // ->setController(NodeCrudController::class)
-                    ->setAction('edit')
-                    // ->set('menuIndex', 1)
-                    ->set('entityId', $entity->getId())
-                    ->generateUrl();
-            })
-            ;
+        $newFn = fn (Action $action) => $action->linkToUrl(
+            fn () => $this->adminUrlGenerator
+                          ->setAction('new')
+                          ->generateUrl()
+        );
+        $editFn = fn (Action $action) => $action->linkToUrl(
+            fn (Node $entity) => $this->adminUrlGenerator
+                          ->setAction('edit')
+                          ->set('entityId', $entity->getId())
+                          ->generateUrl()
+        );
         
         return $actions
-            ->remove('index', 'new')
-            ->remove('index', 'edit')
-            ->remove('detail', 'edit')
-            ->add('index', $new1)
-            ->add('index', $edit1)
-            ->add('detail', $edit1)
+            ->update('index', 'new', $newFn)
+            ->update('index', 'edit', $editFn)
+            ->update('detail', 'edit', $editFn)
         ;
-        /*
-        return $actions
-            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setQueryParameter('fa fa-file-alt');
-            })
-
-            // in PHP 7.4 and newer you can use arrow functions
-            // ->update(Crud::PAGE_INDEX, Action::NEW,
-            //     fn (Action $action) => $action->setIcon('fa fa-file-alt'))
-            ;
-         */
     }
     
     public function configureAssets(Assets $assets): Assets
