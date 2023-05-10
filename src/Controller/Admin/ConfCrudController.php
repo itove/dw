@@ -32,16 +32,17 @@ class ConfCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
+        $editFn = fn (Action $action) => $action->linkToUrl(fn (Conf $entity) =>
+            $this->adminUrlGenerator
+                 ->setAction('edit')
+                 ->set('entityId', $entity->getId())
+                 ->generateUrl()
+        );
+        
         return $actions
-            ->update(Crud::PAGE_DETAIL, Action::EDIT, function (Action $action) {
-                return $action
-                    ->linkToUrl(function (Conf $entity){
-                        return $this->adminUrlGenerator
-                                    ->setAction('edit')
-                                    ->set('entityId', $entity->getId())
-                                    ->generateUrl();
-                    });
-            });
+            ->update(Crud::PAGE_DETAIL, Action::EDIT, $editFn)
+            ->disable('new')
+        ;
     }
 
     public function configureFields(string $pageName): iterable
